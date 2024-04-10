@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class CharacterCard extends StatefulWidget {
   final String fullname;
@@ -22,7 +21,7 @@ class _CharacterCardState extends State<CharacterCard> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: 110,
+      height: 120,
       margin: EdgeInsets.only(bottom: 8),
       decoration: BoxDecoration(
           color: Colors.grey, borderRadius: BorderRadius.circular(20)),
@@ -38,7 +37,7 @@ class _CharacterCardState extends State<CharacterCard> {
                 widget.fullname,
                 style: TextStyle(fontSize: 20),
               ),
-              subtitle: Text(widget.status),
+              subtitle: Text('${widget.status} || ${widget.species}'),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
