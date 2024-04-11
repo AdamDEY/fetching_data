@@ -14,6 +14,7 @@ Character _$CharacterFromJson(Map<String, dynamic> json) => Character(
       image: json['image'] as String,
       episode:
           (json['episode'] as List<dynamic>).map((e) => e as String).toList(),
+      location: json['location']['name'] as String,
     );
 
 Map<String, dynamic> _$CharacterToJson(Character instance) => <String, dynamic>{
@@ -23,4 +24,5 @@ Map<String, dynamic> _$CharacterToJson(Character instance) => <String, dynamic>{
       'species': instance.species,
       'image': instance.image,
       'episode': instance.episode,
+      'location': instance.location,
     };

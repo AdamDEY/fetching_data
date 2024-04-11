@@ -10,6 +10,7 @@ class Character {
   String species;
   String image;
   List<String> episode;
+  String location;
   // Add more fields as needed
 
   Character({
@@ -19,6 +20,7 @@ class Character {
     required this.species,
     required this.image,
     required this.episode,
+    required this.location,
     // Add more fields as needed
   });
   factory Character.fromJson(Map<String, dynamic> json) =>

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:test_technique/components/character_card.dart';
 import 'package:test_technique/model/character.dart';
 import 'package:test_technique/services/api_character.dart';
+import 'package:test_technique/pages/profile.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -11,7 +12,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<Character> characters = []; // List to hold characters
+  late List<Character> characters = [];
 
   @override
   void initState() {
@@ -19,8 +20,7 @@ class _HomeState extends State<Home> {
     getDataCharacter();
   }
 
-  // Function to fetch character data
-  getDataCharacter() async {
+  Future<void> getDataCharacter() async {
     List<Character> chars = await ApiCharacter().getCharacters();
     setState(() {
       characters = chars;
@@ -39,10 +39,21 @@ class _HomeState extends State<Home> {
           itemCount: characters.length,
           itemBuilder: (context, index) {
             return CharacterCard(
-                fullname: characters[index].name,
-                status: characters[index].status,
-                species: characters[index].species,
-                imageUrl: characters[index].image);
+              fullname: characters[index].name,
+              status: characters[index].status,
+              species: characters[index].species,
+              imageUrl: characters[index].image,
+              episodes: characters[index].episode,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        ProfilePage(character: characters[index]),
+                  ),
+                );
+              },
+            );
           },
         ),
       ),
